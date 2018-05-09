@@ -6,5 +6,6 @@ print (login_result)
 
 logged_in = login_result[0]
 if logged_in == True:
-    bot.set_insta_target('sport', 'gym', '', '')    
-
+    bot.set_insta_target('sport', 'gym', '', '')
+    medias = bot.get_media_id_by_tag('sport')
+    # print (medias)

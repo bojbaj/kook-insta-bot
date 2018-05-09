@@ -3,6 +3,8 @@ import time
 import random
 from .login import login
 from .db import DB
+from .media_by_tag import get_media_id_by_tag
+
 
 class InstaBot:
     """
@@ -24,7 +26,10 @@ class InstaBot:
         return self.login_status, self.csrftoken, self.user_id
 
     def set_insta_target(self, target_hashtags, ignore_hashtags,
-                       target_accounts, ignore_accounts):
+                         target_accounts, ignore_accounts):
         self.db = DB()
         return self.db.set_insta_target(self.user_id, target_hashtags, ignore_hashtags,
-                                      target_accounts, ignore_accounts)
+                                        target_accounts, ignore_accounts)
+
+    def get_media_id_by_tag(self, tag):
+        return get_media_id_by_tag(self, tag)
