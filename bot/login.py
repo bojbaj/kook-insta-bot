@@ -47,7 +47,7 @@ def login(self):
             self.login_status = True
             ui = UserInfo()
             self.user_id = ui.get_user_id_by_login(self.user_login)
-            self.db.setInstaUser(self.csrftoken, self.user_id)
+            self.db.set_insta_user(self.csrftoken, self.user_id)
         else:
             self.login_status = False
     else:

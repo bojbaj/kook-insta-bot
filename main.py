@@ -1,8 +1,10 @@
 ﻿from bot import InstaBot
 
 bot = InstaBot('kook.insta.bot.demo', 'kook123')
-a = bot.login()
-print (a)
+login_result = bot.login()
+print (login_result)
 
-if a[0] == True:
-    bot.setInstaTarget('sport', 'gym', '', '')    
+logged_in = login_result[0]
+if logged_in == True:
+    bot.set_insta_target('sport', 'gym', '', '')    
+

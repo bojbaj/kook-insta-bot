@@ -4,7 +4,6 @@ import random
 from .login import login
 from .db import DB
 
-
 class InstaBot:
     """
     Instagram bot
@@ -24,8 +23,8 @@ class InstaBot:
         self.login_status, self.csrftoken, self.user_id = login(self)
         return self.login_status, self.csrftoken, self.user_id
 
-    def setInstaTarget(self, target_hashtags, ignore_hashtags,
+    def set_insta_target(self, target_hashtags, ignore_hashtags,
                        target_accounts, ignore_accounts):
         self.db = DB()
-        return self.db.setInstaTarget(self.user_id, target_hashtags, ignore_hashtags,
+        return self.db.set_insta_target(self.user_id, target_hashtags, ignore_hashtags,
                                       target_accounts, ignore_accounts)

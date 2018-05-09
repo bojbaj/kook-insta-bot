@@ -17,7 +17,7 @@ class DB:
         db = MySQLdb.connect(host=host, user=user, passwd=pwd, db=db_name)
         return db, db.cursor()
 
-    def setInstaUser(self, csrf, insta_id):
+    def set_insta_user(self, csrf, insta_id):
         db, db_c = self.open()
         query = "INSERT INTO tInstaUsers(csrf, insta_id, active)\n"
         query += "VALUES('{0}', '{1}', 1)\n"
@@ -27,7 +27,7 @@ class DB:
         db.commit()
         db.close()
 
-    def setInstaTarget(self, insta_id, target_hashtags, ignore_hashtags,
+    def set_insta_target(self, insta_id, target_hashtags, ignore_hashtags,
                        target_accounts, ignore_accounts):
         db, db_c = self.open()
         query = "INSERT INTO tInstaTarget(insta_id, target_hashtags, ignore_hashtags, target_accounts, ignore_accounts)\n"
