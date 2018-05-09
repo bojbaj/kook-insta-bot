@@ -1,6 +1,7 @@
 import random
 import time
 from .urls import url, url_login
+from .user import UserInfo
 
 
 def login(self):
@@ -30,7 +31,7 @@ def login(self):
         url_login, data=self.login_post, allow_redirects=True)
     self.s.headers.update({'X-CSRFToken': login.cookies['csrftoken']})
     self.csrftoken = login.cookies['csrftoken']
-    #ig_vw=1536; ig_pr=1.25; ig_vh=772;  ig_or=landscape-primary;
+    # ig_vw=1536; ig_pr=1.25; ig_vh=772;  ig_or=landscape-primary;
     self.s.cookies['ig_vw'] = '1536'
     self.s.cookies['ig_pr'] = '1.25'
     self.s.cookies['ig_vh'] = '772'
@@ -42,9 +43,11 @@ def login(self):
         finder = r.text.find(self.user_login)
         if finder != -1:
             self.login_status = True
+            ui = UserInfo()
+            self.user_id = ui.get_user_id_by_login(self.user_login)
         else:
             self.login_status = False
     else:
         self.login_status = False
 
-    return self.login_status, self.csrftoken
+    return self.login_status, self.csrftoken, self.user_id
