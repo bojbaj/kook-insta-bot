@@ -37,4 +37,4 @@ class DB:
                              target_accounts, ignore_accounts)
         db_c.execute(query)
         db.commit()
-        db.close()
+        db.close()  

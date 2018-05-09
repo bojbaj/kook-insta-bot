@@ -105,3 +105,6 @@ venv.bak/
 
 # config
 bot/config.inc
+
+# cookies
+cookies/*.ck
