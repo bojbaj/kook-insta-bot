@@ -1,0 +1,5 @@
+[DB]
+host=localhost
+db=db_name
+user=root
+pass=

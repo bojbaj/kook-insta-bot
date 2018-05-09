@@ -1,16 +1,18 @@
 # import sqlite3
 import MySQLdb
-
+import ConfigParser
 
 class DB:
     def __init__(self):
         self.config = ''
 
     def open(self):
-        host = 'localhost'
-        user = 'root'
-        pwd = 'Az123456'
-        db_name = 'kook-insta-bot'
+        config = ConfigParser.ConfigParser()
+        config.readfp(open(r'./bot/config.inc'))
+        host = config.get('DB', 'host')
+        db_name = config.get('DB', 'db')
+        user = config.get('DB', 'user')
+        pwd = config.get('DB', 'pass')
         db = MySQLdb.connect(host=host, user=user, passwd=pwd, db=db_name)
         return db, db.cursor()
 
