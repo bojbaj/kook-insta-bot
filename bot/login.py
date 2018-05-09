@@ -1,10 +1,12 @@
 import random
 import time
 from .urls import url, url_login
+from .db import DB
 from .user import UserInfo
 
 
 def login(self):
+    self.db = DB()
     self.login_post = {
         'username': self.user_login,
         'password': self.user_password
@@ -45,6 +47,7 @@ def login(self):
             self.login_status = True
             ui = UserInfo()
             self.user_id = ui.get_user_id_by_login(self.user_login)
+            self.db.setInstaUser(self.csrftoken, self.user_id)
         else:
             self.login_status = False
     else:
