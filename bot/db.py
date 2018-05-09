@@ -22,6 +22,6 @@ class DB:
         query += "VALUES('{0}', '{1}', 1)\n"
         query += "ON DUPLICATE KEY UPDATE csrf='{0}'\n"
         query = query.format(csrf, insta_id)
-        r = db_c.execute(query)
+        db_c.execute(query)
         db.commit()
         db.close()
