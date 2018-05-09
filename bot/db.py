@@ -2,6 +2,7 @@
 import MySQLdb
 import ConfigParser
 
+
 class DB:
     def __init__(self):
         self.config = ''
@@ -22,6 +23,18 @@ class DB:
         query += "VALUES('{0}', '{1}', 1)\n"
         query += "ON DUPLICATE KEY UPDATE csrf='{0}'\n"
         query = query.format(csrf, insta_id)
+        db_c.execute(query)
+        db.commit()
+        db.close()
+
+    def setInstaTarget(self, insta_id, target_hashtags, ignore_hashtags,
+                       target_accounts, ignore_accounts):
+        db, db_c = self.open()
+        query = "INSERT INTO tInstaTarget(insta_id, target_hashtags, ignore_hashtags, target_accounts, ignore_accounts)\n"
+        query += "VALUES('{0}', N'{1}', N'{2}', N'{3}', N'{4}')\n"
+        query += "ON DUPLICATE KEY UPDATE target_hashtags=N'{1}', ignore_hashtags=N'{2}', target_accounts=N'{3}', ignore_accounts=N'{4}' \n"
+        query = query.format(insta_id, target_hashtags, ignore_hashtags,
+                             target_accounts, ignore_accounts)
         db_c.execute(query)
         db.commit()
         db.close()

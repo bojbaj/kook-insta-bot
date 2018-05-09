@@ -2,6 +2,8 @@ import requests
 import time
 import random
 from .login import login
+from .db import DB
+
 
 class InstaBot:
     """
@@ -19,4 +21,11 @@ class InstaBot:
         self.s = requests.Session()
 
     def login(self):
-        return login(self)
+        self.login_status, self.csrftoken, self.user_id = login(self)
+        return self.login_status, self.csrftoken, self.user_id
+
+    def setInstaTarget(self, target_hashtags, ignore_hashtags,
+                       target_accounts, ignore_accounts):
+        self.db = DB()
+        return self.db.setInstaTarget(self.user_id, target_hashtags, ignore_hashtags,
+                                      target_accounts, ignore_accounts)
