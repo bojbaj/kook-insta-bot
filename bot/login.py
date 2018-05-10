@@ -1,7 +1,7 @@
 import random
 import time
 from .urls import url, url_login
-from .db import DB
+from .db import set_insta_user
 from .user import UserInfo
 import json
 import requests
@@ -10,7 +10,6 @@ import pickle
 
 
 def login(self):
-    self.db = DB()
     self.login_post = {
         'username': self.user_login,
         'password': self.user_password
@@ -52,7 +51,7 @@ def login(self):
             self.login_status = True
             ui = UserInfo()
             self.user_id = ui.get_user_id_by_login(self.user_login)
-            self.db.set_insta_user(self.csrftoken, self.user_id)
+            set_insta_user(self, self.csrftoken, self.user_id)
             with open('cookies/cookie_' + self.user_id + '.ck', 'w') as f:
                 pickle.dump(requests.utils.dict_from_cookiejar(
                     self.s.cookies), f)

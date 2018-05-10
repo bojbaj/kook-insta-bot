@@ -1,7 +1,9 @@
 import json
 from .urls import url_tag
 
+
 def get_media_id_by_tag(self, tag):
+
     self.media_by_tag = []
     if self.login_status:
         url = url_tag % (tag)

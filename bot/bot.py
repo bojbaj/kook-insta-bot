@@ -2,7 +2,7 @@ import requests
 import time
 import random
 from .login import login, reload_session, is_logged_in
-from .db import DB
+from .db import set_insta_target
 from .media_by_tag import get_media_id_by_tag
 
 
@@ -38,9 +38,8 @@ class InstaBot:
 
     def set_insta_target(self, target_hashtags, ignore_hashtags,
                          target_accounts, ignore_accounts):
-        self.db = DB()
-        return self.db.set_insta_target(self.user_id, target_hashtags, ignore_hashtags,
-                                        target_accounts, ignore_accounts)
+        return set_insta_target(self, self.user_id, target_hashtags, ignore_hashtags,
+                                target_accounts, ignore_accounts)
 
     def get_media_id_by_tag(self, tag):
         return get_media_id_by_tag(self, tag)
