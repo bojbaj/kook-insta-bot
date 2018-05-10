@@ -20,5 +20,7 @@ if logged_in == True:
     print (len(medias), 'in sport')
     medias = bot.get_media_id_by_tag('football')
     print (len(medias), 'in football')
+    medias = bot.get_media_id_by_tag('football')
+    print (len(medias), 'in football')
     # with open('tmp/medias.json', 'w') as f:
     #     f.writelines(json.dumps(medias, indent=4))
