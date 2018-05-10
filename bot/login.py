@@ -42,33 +42,43 @@ def login(self):
     self.s.cookies['ig_pr'] = '1.25'
     self.s.cookies['ig_vh'] = '772'
     self.s.cookies['ig_or'] = 'landscape-primary'
-    time.sleep(1 * random.random())
+    time.sleep(3 * random.random())
 
     if login.status_code == 200:
-        r = self.s.get('https://www.instagram.com/')
-        finder = r.text.find(self.user_login)
-        if finder != -1:
-            self.login_status = True
-            ui = UserInfo()
-            self.user_id = ui.get_user_id_by_login(self.user_login)
+        response = json.loads(login.text)
+        self.login_status = response['authenticated']
+        if self.login_status == True:
+            self.user_id = response['userId']
             set_insta_user(self, self.csrftoken, self.user_id)
             with open('cookies/cookie_' + self.user_id + '.ck', 'w') as f:
                 pickle.dump(requests.utils.dict_from_cookiejar(
                     self.s.cookies), f)
-        else:
-            self.login_status = False
+        
+        # r = self.s.get('https://www.instagram.com/')
+        # finder = r.text.find(self.user_login)
+        # if finder != -1:
+        #     self.login_status = True
+        #     ui = UserInfo()
+        #     self.user_id = ui.get_user_id_by_login(self.user_login)
+        #     set_insta_user(self, self.csrftoken, self.user_id)
+        #     with open('cookies/cookie_' + self.user_id + '.ck', 'w') as f:
+        #         pickle.dump(requests.utils.dict_from_cookiejar(
+        #             self.s.cookies), f)
+        # else:
+        #     self.login_status = False
     else:
         self.login_status = False
 
     return self.login_status, self.csrftoken, self.user_id
 
 
-def reload_session(self):   
+def reload_session(self):
     with open('cookies/cookie_' + self.user_id + '.ck') as f:
         cookies = requests.utils.cookiejar_from_dict(pickle.load(f))
         self.s.cookies = cookies
 
-def is_logged_in(self):   
+
+def is_logged_in(self):
     # ig_vw=1536; ig_pr=1.25; ig_vh=772;  ig_or=landscape-primary;
     self.s.cookies['ig_vw'] = '1536'
     self.s.cookies['ig_pr'] = '1.25'
@@ -79,7 +89,7 @@ def is_logged_in(self):
     if finder != -1:
         self.login_status = True
         ui = UserInfo()
-        self.csrftoken = r.cookies['csrftoken']        
+        self.csrftoken = r.cookies['csrftoken']
         self.user_id = ui.get_user_id_by_login(self.user_login)
     else:
         self.login_status = False

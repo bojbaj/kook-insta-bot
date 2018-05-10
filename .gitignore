@@ -108,3 +108,7 @@ bot/config.inc
 
 # cookies
 cookies/*.ck
+
+# temp files
+tmp/*
+!tmp/README.md

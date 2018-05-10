@@ -6,5 +6,5 @@ CREATE TABLE `tInstaTarget` (
   `target_accounts` varchar(500) COLLATE utf8_persian_ci NOT NULL,
   `ignore_accounts` varchar(500) COLLATE utf8_persian_ci NOT NULL,  
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `tInstaUsers_UN` (`insta_id`)
+  UNIQUE KEY `tInstaTarget_UN` (`insta_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
