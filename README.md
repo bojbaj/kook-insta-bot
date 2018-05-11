@@ -9,7 +9,7 @@ An instagram bot with [login, logout, follow, unfollow, like, unlike, comment, .
 - [ ] fetch media from an instagram account
 - [ ] filter medias with ignore account list
 - [ ] fetch older media from a hashtag and account [ more than page 1 ]
-- [ ] fetch likers of a media
+- [X] fetch likers of a media
 - [ ] fetch all users who submit a comment for a media
 - [ ] fetch likers of a media
 - [ ] follow a user

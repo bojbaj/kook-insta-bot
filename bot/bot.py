@@ -4,6 +4,7 @@ import random
 from .login import login, reload_session, is_logged_in
 from .db import set_insta_target
 from .media_by_tag import get_media_id_by_tag
+from .likers_of_media import get_likers_of_media_graphQL
 
 
 class InstaBot:
@@ -43,3 +44,6 @@ class InstaBot:
 
     def get_media_id_by_tag(self, tag):
         return get_media_id_by_tag(self, tag)
+
+    def get_likers_of_media(self, code):
+        return get_likers_of_media_graphQL(self, code)

@@ -11,3 +11,8 @@ url_logout = 'https://www.instagram.com/accounts/logout/'
 url_media_detail = 'https://www.instagram.com/p/%s/?__a=1'
 url_user_detail = 'https://www.instagram.com/%s/'
 api_user_detail = 'https://i.instagram.com/api/v1/users/%s/info/'
+
+# GraphQL
+url_media_detail_graphql ='https://www.instagram.com/graphql/query/?query_id=17864450716183058&variables={"shortcode":"%s","first":10}'
+url_media_detail_graphql_more ='https://www.instagram.com/graphql/query/?query_id=17864450716183058&variables={"shortcode":"%s","first":10,"after":"%s"}'
+
