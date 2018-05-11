@@ -41,23 +41,20 @@ def set_insta_target(self, insta_id, target_hashtags, ignore_hashtags,
 
 
 def set_insta_media_by_hashtag(self, target_hashtag, medias):
-    try:
-        db, db_c = open_conn(self)
-        sp_name = 'spAddHashtag'
-        args = (target_hashtag, "@Result")
-        db_c.callproc(sp_name, args)
-        query = "SELECT @_spAddHashtag_1;"
-        db_c.execute(query)
-        result = db_c.fetchall()
-        hashtag_id = result[0][0]
-        db.commit()
+    db, db_c = open_conn(self)
+    sp_name = 'spAddHashtag'
+    args = (target_hashtag, "@Result")
+    db_c.callproc(sp_name, args)
+    query = "SELECT @_spAddHashtag_1;"
+    db_c.execute(query)
+    result = db_c.fetchall()
+    hashtag_id = result[0][0]
+    db.commit()
 
-        for media in medias:
-            query = "CALL spAddMediaByHashtag ({0}, '{1}', '{2}', '{3}', {4}, {5});\n"
-            query = query.format(
-                hashtag_id, media['node']['id'], media['node']['shortcode'], media['node']['owner']['id'], media['node']['taken_at_timestamp'], media['node']['is_video'])
-            db_c.execute(query)
-        db.commit()
-        db.close()
-    except Exception, e:
-        print(str(e))
+    for media in medias:
+        query = "CALL spAddMediaByHashtag ({0}, '{1}', '{2}', '{3}', {4}, {5});\n"
+        query = query.format(
+            hashtag_id, media['node']['id'], media['node']['shortcode'], media['node']['owner']['id'], media['node']['taken_at_timestamp'], media['node']['is_video'])
+        db_c.execute(query)
+    db.commit()
+    db.close()
