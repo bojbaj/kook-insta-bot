@@ -26,8 +26,8 @@ DROP PROCEDURE IF EXISTS spAddMediaByHashtag;
 DELIMITER $$
 CREATE PROCEDURE spAddMediaByHashtag(
  IN HashtagID INT, 
- IN MediaCode VARCHAR(20), 
  IN MediaID VARCHAR(19),
+ IN MediaCode VARCHAR(11), 
  IN OwnerID VARCHAR(10),
  IN TakenAt INT,
  IN IsVideo TINYINT
