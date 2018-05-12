@@ -18,8 +18,9 @@ if logged_in == True:
     # bot.set_insta_target('sport', 'gym', '', '')
 
     # GET list of medias from a hashtag
-    medias = bot.get_media_id_by_tag('fun')
-    print (len(medias), 'in fun')
+    hastag = 'tag_firends'
+    medias = bot.get_media_id_by_tag(hastag)
+    print (len(medias), 'in', hastag)
     with open('tmp/medias.json', 'w') as f:
         f.writelines(json.dumps(medias, indent=4))
 
@@ -31,11 +32,16 @@ if logged_in == True:
     # for media in medias:
     if(len(medias) > 0):
         media = medias[random.randint(0, len(medias) - 1)]
+        media = medias[-1]
         media_id = media['node']['id']
         media_code = media['node']['shortcode']
         print ('the shortcode is', media_code)
-        liker = bot.get_likers_of_media(media_code)
-        print (len(liker), 'for this code:', media_code)
+        likes = bot.get_likes_of_media(media_code)
+        print (len(likes), 'likes for this code:', media_code)
+
+        comments = bot.get_comments_of_media(media_code)
+        print (len(comments), 'comments for this code:', media_code)
+
         # with open('tmp/likers.json', 'w') as f:
         #     f.writelines(json.dumps(liker, indent=4))
     else:
