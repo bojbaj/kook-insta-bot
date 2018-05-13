@@ -2,7 +2,6 @@ import requests
 import time
 import random
 from .login import login, reload_session, is_logged_in
-from .db import set_insta_target
 from .media_by_tag import get_media_id_by_tag
 from .likes_of_media import get_likes_of_media_graphQL
 from .comments_of_media import get_comments_of_media
@@ -37,11 +36,6 @@ class InstaBot:
     def login(self):
         self.login_status, self.csrftoken, self.user_id = login(self)
         return self.login_status, self.csrftoken, self.user_id
-
-    def set_insta_target(self, target_hashtags, ignore_hashtags,
-                         target_accounts, ignore_accounts):
-        return set_insta_target(self, self.user_id, target_hashtags, ignore_hashtags,
-                                target_accounts, ignore_accounts)
 
     def get_media_id_by_tag(self, tag):
         return get_media_id_by_tag(self, tag)

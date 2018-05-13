@@ -4,7 +4,7 @@ import ConfigParser
 import json
 
 
-def open_conn(self):
+def open_conn():
     config = ConfigParser.ConfigParser()
     config.readfp(open(r'./bot/config.inc'))
     host = config.get('DB', 'host')
@@ -16,8 +16,8 @@ def open_conn(self):
     return db, db.cursor()
 
 
-def set_insta_user(self, csrf, insta_id):
-    db, db_c = open_conn(self)
+def set_insta_user(csrf, insta_id):
+    db, db_c = open_conn()
     query = "INSERT INTO tInstaUsers(csrf, insta_id, active)\n"
     query += "VALUES('{0}', '{1}', 1)\n"
     query += "ON DUPLICATE KEY UPDATE csrf='{0}'\n"
@@ -27,9 +27,9 @@ def set_insta_user(self, csrf, insta_id):
     db.close()
 
 
-def set_insta_target(self, insta_id, target_hashtags, ignore_hashtags,
+def set_insta_target(insta_id, target_hashtags, ignore_hashtags,
                      target_accounts, ignore_accounts):
-    db, db_c = open_conn(self)
+    db, db_c = open_conn()
     query = "INSERT INTO tInstaTarget(insta_id, target_hashtags, ignore_hashtags, target_accounts, ignore_accounts)\n"
     query += "VALUES('{0}', N'{1}', N'{2}', N'{3}', N'{4}')\n"
     query += "ON DUPLICATE KEY UPDATE target_hashtags=N'{1}', ignore_hashtags=N'{2}', target_accounts=N'{3}', ignore_accounts=N'{4}' \n"
@@ -40,8 +40,8 @@ def set_insta_target(self, insta_id, target_hashtags, ignore_hashtags,
     db.close()
 
 
-def set_insta_media_by_hashtag(self, target_hashtag, medias):
-    db, db_c = open_conn(self)
+def set_insta_media_by_hashtag(target_hashtag, medias):
+    db, db_c = open_conn()
     sp_name = 'spAddHashtag'
     args = (target_hashtag, "@Result")
     db_c.callproc(sp_name, args)
