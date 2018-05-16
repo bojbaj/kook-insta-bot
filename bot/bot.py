@@ -6,6 +6,7 @@ from .media_by_tag import get_media_id_by_tag
 from .likes_of_media import get_likes_of_media_graphQL
 from .comments_of_media import get_comments_of_media
 from .follow import follow
+from .unfollow import unfollow
 
 
 class InstaBot:
@@ -45,7 +46,10 @@ class InstaBot:
         return get_likes_of_media_graphQL(self, code)
 
     def get_comments_of_media(self, code):
-        return get_comments_of_media(self, code)        
+        return get_comments_of_media(self, code)
 
     def follow(self, user_id):
         return follow(self, user_id)
+
+    def unfollow(self, user_id):
+        return unfollow(self, user_id)
