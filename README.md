@@ -11,8 +11,8 @@ An instagram bot with [login, logout, follow, unfollow, like, unlike, comment, .
 - [ ] fetch older media from a hashtag and account [ more than page 1 ]
 - [X] fetch likers of a media
 - [X] fetch all users who submit a comment for a media
-- [ ] follow a user
-- [ ] unfollow a user
+- [X] follow a user
+- [X] unfollow a user
 - [ ] like a media
 - [ ] unlike a media
 - [ ] comment for a media
