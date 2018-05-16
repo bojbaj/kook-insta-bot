@@ -9,8 +9,7 @@ def unfollow(self, user_id):
             print(url)
             unfollow = self.s.post(url)
             print(unfollow.text)
-            if unfollow.status_code == 200:
-                response = json.loads(unfollow.text)
+            if unfollow.status_code == 200:                
                 return True, 'ok'
         except Exception, e:
             return False, str(e)
