@@ -8,7 +8,6 @@ def get_likes_of_media_graphQL(self, code):
         try:
             r = self.s.get(url)
             all_data = json.loads(r.text)
-            print (all_data)
             has_next_page = all_data['data']['shortcode_media']['edge_liked_by']['page_info']['has_next_page']
             likers = list(
                 all_data['data']['shortcode_media']['edge_liked_by']['edges'])
@@ -24,8 +23,7 @@ def get_likes_of_media_graphQL(self, code):
                 has_next_page = all_data['data']['shortcode_media']['edge_liked_by']['page_info']['has_next_page']
 
             # TODO: check ignore account for owner and likers
-        except Exception ,e:
-            print (str(e))
+        except:
             likers = []
     return likers
 

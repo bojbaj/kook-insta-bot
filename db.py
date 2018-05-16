@@ -58,3 +58,24 @@ def set_insta_media_by_hashtag(target_hashtag, medias):
         db_c.execute(query)
     db.commit()
     db.close()
+
+
+def set_likes_by_media(media_id, likes):
+    db, db_c = open_conn()
+
+    for like in likes:
+        query = "CALL spAddTargetByMedia ('{0}', '{1}', 1);\n"
+        query = query.format(media_id, like['node']['id'])
+        db_c.execute(query)
+    db.commit()
+    db.close()
+
+def set_comments_by_media(media_id, comments):
+    db, db_c = open_conn()
+
+    for comment in comments:
+        query = "CALL spAddTargetByMedia ('{0}', '{1}', 0);\n"
+        query = query.format(media_id, comment['node']['owner']['id'])
+        db_c.execute(query)
+    db.commit()
+    db.close()

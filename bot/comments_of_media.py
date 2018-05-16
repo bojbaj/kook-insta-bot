@@ -7,8 +7,7 @@ def get_comments_of_media(self, code):
         url = url_graphql_media_comments % (code,'')
         try:
             r = self.s.get(url)
-            all_data = json.loads(r.text)
-
+            all_data = json.loads(r.text)            
             has_next_page = all_data['data']['shortcode_media']['edge_media_to_comment']['page_info']['has_next_page']
             comments = list(
                 all_data['data']['shortcode_media']['edge_media_to_comment']['edges'])
