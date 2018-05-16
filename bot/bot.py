@@ -5,6 +5,7 @@ from .login import login, reload_session, is_logged_in
 from .media_by_tag import get_media_id_by_tag
 from .likes_of_media import get_likes_of_media_graphQL
 from .comments_of_media import get_comments_of_media
+from .follow import follow
 
 
 class InstaBot:
@@ -45,3 +46,6 @@ class InstaBot:
 
     def get_comments_of_media(self, code):
         return get_comments_of_media(self, code)        
+
+    def follow(self, user_id):
+        return follow(self, user_id)
