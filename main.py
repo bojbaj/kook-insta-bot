@@ -45,15 +45,15 @@ if(login_status):
         print (len(comments), 'comments for this code:', media_code)
         set_comments_by_media(media_id, comments)
 
+        # like target media
+        status, result = bot.like(media_id)
+        print (status, result)
+
         if(len(likes) > 0):
             like = likes[random.randint(0, len(likes) - 1)]
             like_id = like['node']['id']
             print ('trying to follow', like_id)
             status, result = bot.follow(like_id)
-            print(status, result)    
+            print(status, result)
     else:
         print ('no Media!')
-
-
-# with open('tmp/comments.json', 'w') as f:
-#     f.write(json.dumps(comments, indent=4))

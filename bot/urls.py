@@ -1,7 +1,7 @@
 # Instagram Urls
 url = 'https://www.instagram.com/'
 url_tag = 'https://www.instagram.com/explore/tags/%s/?__a=1&max_id='
-url_likes = 'https://www.instagram.com/web/likes/%s/like/'
+url_like = 'https://www.instagram.com/web/likes/%s/like/'
 url_unlike = 'https://www.instagram.com/web/likes/%s/unlike/'
 url_comment = 'https://www.instagram.com/web/comments/%s/add/'
 url_follow = 'https://www.instagram.com/web/friendships/%s/follow/'

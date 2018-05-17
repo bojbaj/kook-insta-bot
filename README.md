@@ -13,7 +13,7 @@ An instagram bot with [login, logout, follow, unfollow, like, unlike, comment, .
 - [X] fetch all users who submit a comment for a media
 - [X] follow a user
 - [X] unfollow a user
-- [ ] like a media
-- [ ] unlike a media
+- [X] like a media
+- [X] unlike a media
 - [ ] comment for a media
 - [ ] send direct message to user
